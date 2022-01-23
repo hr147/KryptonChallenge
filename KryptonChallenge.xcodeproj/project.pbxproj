@@ -26,6 +26,8 @@
 		4DE299EB279DA0B00091D7A6 /* StockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299EA279DA0B00091D7A6 /* StockCoordinator.swift */; };
 		4DE299ED279DA1290091D7A6 /* StockViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299EC279DA1290091D7A6 /* StockViewControllerFactory.swift */; };
 		4DE299F0279DC3CD0091D7A6 /* EuroFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299EF279DC3CD0091D7A6 /* EuroFormatter.swift */; };
+		4DE299F3279E00640091D7A6 /* SocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299F2279E00640091D7A6 /* SocketHandler.swift */; };
+		4DE299F5279E05CA0091D7A6 /* StockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299F4279E05CA0091D7A6 /* StockUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		4DE299EA279DA0B00091D7A6 /* StockCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCoordinator.swift; sourceTree = "<group>"; };
 		4DE299EC279DA1290091D7A6 /* StockViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewControllerFactory.swift; sourceTree = "<group>"; };
 		4DE299EF279DC3CD0091D7A6 /* EuroFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuroFormatter.swift; sourceTree = "<group>"; };
+		4DE299F2279E00640091D7A6 /* SocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHandler.swift; sourceTree = "<group>"; };
+		4DE299F4279E05CA0091D7A6 /* StockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 		4DE299E6279D967A0091D7A6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4DE299F1279E002B0091D7A6 /* DataSource */,
 				4DE299E9279DA0500091D7A6 /* Stock */,
 			);
 			path = Features;
@@ -164,6 +169,15 @@
 				4DE299EF279DC3CD0091D7A6 /* EuroFormatter.swift */,
 			);
 			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
+		4DE299F1279E002B0091D7A6 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				4DE299F2279E00640091D7A6 /* SocketHandler.swift */,
+				4DE299F4279E05CA0091D7A6 /* StockUseCase.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,10 +269,12 @@
 				4DE299F0279DC3CD0091D7A6 /* EuroFormatter.swift in Sources */,
 				4DCC1990279C221000692E6C /* SceneDelegate.swift in Sources */,
 				4DE299EB279DA0B00091D7A6 /* StockCoordinator.swift in Sources */,
+				4DE299F5279E05CA0091D7A6 /* StockUseCase.swift in Sources */,
 				4DE299E3279D94330091D7A6 /* UIKit+ReuseIdentifier.swift in Sources */,
 				4DE299DE279D94330091D7A6 /* BaseCoordinator.swift in Sources */,
 				4DE299E4279D94330091D7A6 /* UIViewController+Extension.swift in Sources */,
 				4DE299ED279DA1290091D7A6 /* StockViewControllerFactory.swift in Sources */,
+				4DE299F3279E00640091D7A6 /* SocketHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

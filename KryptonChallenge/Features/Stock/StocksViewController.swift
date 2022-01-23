@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Starscream
 import RxRelay
 
 struct Stock {
@@ -55,7 +54,7 @@ struct StockViewModel: Identifiable {
 }
 
 extension StockViewModel {
-     init(stock: Stock) {
+    init(stock: Stock) {
         //self.init(id: stock.id, name: stock.name, price: stock.price)
         self.id = stock.id
         self.name = stock.name
@@ -75,138 +74,72 @@ extension StockViewModel: Hashable {
     }
 }
 
-class StocksViewController: UITableViewController, WebSocketDelegate {
-    //{"subscribe":"US0378331005"}
-    
-    //let manager = SocketManager(socketURL: URL(string: "ws://159.89.15.214:8080/")!, config: [.log(true), .compress])
-    
-    //lazy var socket = manager.defaultSocket
+class StocksViewController: UITableViewController {
     private lazy var dataSource = makeDataSource()
-    var socket: WebSocket!
     
-    //var stockViewModels: IdentifiedArrayOf<StockViewModel> = []
     var stockViewModels: [StockViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var request = URLRequest(url: URL(string: "ws://159.89.15.214:8080/")!) //https://localhost:8080
-        request.timeoutInterval = 5
-        socket = WebSocket(request: request)
-        socket.delegate = self
-        socket.connect()
         tableView.dataSource = dataSource
         update(with: [])
         title = "Krypton Challenge"
+        configure()
     }
     
-    // MARK: - WebSocketDelegate
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        switch event {
-        case .connected(let headers):
-            //isConnected = true
-            print("websocket is connected: \(headers)")
-            //client.write(data: jsonToNSData(json: ["subscribe":"US0378331005"])!)
-            //client.write(data: jsonToNSData(json: ["subscribe":"US88160R1014"])!)
-            
-            //stockViewModels = .init(uniqueElements: stocks.map (StockViewModel.init(stock:)))
-            stockViewModels = stocks.map (StockViewModel.init(stock:))
-            update(with: stockViewModels)
-            
-            stocks.forEach {
-                jsonToNSData(json: ["subscribe": $0.id]).map { data in
-                    client.write(data: data)
-                }
+    var disposeBag = DisposeBag()
+    let useCase = SocketStockUseCase(handler: handler)
+    
+    func configure()  {
+        useCase.fetchStocks().subscribe {[weak self] event in
+            switch event {
+            case .next(let stock):
+                print(stock)
+                self?.stockViewModels.first { $0.id == stock.id }?.price.accept(stock.price)
+            case .completed:
+                break
+            case .error(let error):
+                print(error.localizedDescription)
             }
-        case .disconnected(let reason, let code):
-            //isConnected = false
-            print("websocket is disconnected: \(reason) with code: \(code)")
-        case .text(let string):
-            print("Received text: \(string)")
-            makeStock(from: string).map { stock in
-                print("\nmapping: \(stock)\n")
-                //stockViewModels[id: $0.id]?.price.accept($0.price)
-                stockViewModels.first { $0.id == stock.id }?.price.accept(stock.price)
-            }
-        case .binary(let data):
-            print("Received data: \(data.count)")
-        case .ping(_):
-            break
-        case .pong(_):
-            break
-        case .viabilityChanged(_):
-            break
-        case .reconnectSuggested(_):
-            break
-        case .cancelled:
-            print("connected canncelled")
-        case .error(let error):
-            print("Error \(error)\n")
-            handleError(error)
-        }
-    }
-    
-    func handleError(_ error: Error?) {
-        if let e = error as? WSError {
-            print("websocket encountered an error: \(e.message)")
-        } else if let e = error {
-            print("websocket encountered an error: \(e.localizedDescription)")
-        } else {
-            print("websocket encountered an error")
-        }
-    }
-    
-    // Convert from JSON to nsdata
-    func jsonToNSData(json: [String: String]) -> Data?{
-        do {
-            return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil;
-    }
-    
-    func makeStock(from stringData: String) -> Stock? {
-        do {
-            guard let data = stringData.data(using: .utf8) else {
-                      return nil
-                  }
-            
-            
-            let stock = try JSONDecoder().decode(Stock.self, from: data)
-            
-            return stock
-        } catch  {
-            print(error.localizedDescription)
-            return nil
-        }
+        }.disposed(by: disposeBag)
+        
+        stockViewModels = stocks.map (StockViewModel.init(stock:))
+        update(with: stockViewModels)
         
     }
+    
     override func tableView(_ tableView: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Archive action
         let archive = UIContextualAction(style: .normal,
                                          title: "subscribe") { [weak self] (action, view, completionHandler) in
-                                            //self?.handleMoveToArchive()
-                                            completionHandler(true)
+            //self?.handleMoveToArchive()
+            guard let self = self else { return }
+            
+            self.useCase.subscribe(stocks[indexPath.row])
+                .subscribe {
+                    print($0)
+                }.disposed(by: self.disposeBag)
+            completionHandler(true)
         }
         archive.backgroundColor = .systemGreen
-
+        
         // Trash action
         let trash = UIContextualAction(style: .destructive,
                                        title: "unsubscribe") { [weak self] (action, view, completionHandler) in
-                                        //self?.handleMoveToTrash()
-                                        completionHandler(true)
+            //self?.handleMoveToTrash()
+            completionHandler(true)
         }
         trash.backgroundColor = .systemRed
-
+        
         let configuration = UISwipeActionsConfiguration(actions: [trash, archive])
-
+        
         return configuration
     }
     
     override func tableView(_ tableView: UITableView,
-                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+                            editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
 }
@@ -243,7 +176,7 @@ class StockCell: UITableViewCell {
     var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
-     super.prepareForReuse()
+        super.prepareForReuse()
         disposeBag = .init()
     }
     
