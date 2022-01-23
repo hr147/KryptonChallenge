@@ -7,6 +7,7 @@
 
 import UIKit
 import RxRelay
+import RxSwift
 
 struct Stock {
     let id: String
@@ -153,8 +154,8 @@ fileprivate extension StocksViewController {
         return UITableViewDiffableDataSource(
             tableView: tableView,
             cellProvider: {  tableView, indexPath, stock in
-                let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as? StockCell
-                cell?.configure(with: stock)
+                let cell: StockTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.configure(with: stock)
                 return cell
             })
     }
@@ -165,27 +166,6 @@ fileprivate extension StocksViewController {
             snapshot.appendSections(Section.allCases)
             snapshot.appendItems(stocks, toSection: .stocks)
             self.dataSource.apply(snapshot, animatingDifferences: animate)
-        }
-    }
-}
-
-import RxSwift
-import RxCocoa
-
-class StockCell: UITableViewCell {
-    var disposeBag = DisposeBag()
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = .init()
-    }
-    
-    func configure(with stock: StockViewModel) {
-        textLabel?.text = stock.name
-        detailTextLabel.map {
-            stock.price.asDriver()
-                .drive($0.rx.text)
-                .disposed(by: disposeBag)
         }
     }
 }
