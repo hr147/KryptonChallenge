@@ -2,8 +2,7 @@ import UIKit
 
 extension UIStoryboard {
     enum Name: String {
-        case product = "Product"
-        case productDetail = "ProductDetail"
+        case stock = "Stock"
     }
     
     convenience init(name: Name, bundle: Bundle? = nil) {
