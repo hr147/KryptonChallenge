@@ -9,26 +9,6 @@ import UIKit
 import RxRelay
 import RxSwift
 
-struct Stock {
-    let id: String
-    var name: String = ""
-    
-    @EuroFormatter
-    var price: String?
-    
-    init(id: String, name: String, price: String? = "--") {
-        self.id = id
-        self.name = name
-        self.price = price
-    }
-}
-
-extension Stock: Decodable {
-    private enum CodingKeys : String, CodingKey {
-        case id = "isin" , price
-    }
-}
-
 let stocks: [Stock] = [
     .init(id: "US0378331005", name: "Apple"),
     .init(id: "US88160R1014", name: "Tesla Motors"),
@@ -42,43 +22,10 @@ let stocks: [Stock] = [
     .init(id: "US70450Y1038", name: "Paypal")
 ]
 
-struct StockViewModel: Identifiable {
-    let id: String
-    let name: String
-    let price: BehaviorRelay<String?>
-    
-    init(id: String, name: String, price: String) {
-        self.id = id
-        self.name = name
-        self.price = .init(value: price)
-    }
-}
-
-extension StockViewModel {
-    init(stock: Stock) {
-        //self.init(id: stock.id, name: stock.name, price: stock.price)
-        self.id = stock.id
-        self.name = stock.name
-        self.price = .init(value: stock.price)
-    }
-}
-
-extension StockViewModel: Hashable {
-    static func == (lhs: StockViewModel, rhs: StockViewModel) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(name)
-        hasher.combine(price.value)
-    }
-}
-
-class StocksViewController: UITableViewController {
+class StockViewController: UITableViewController {
     private lazy var dataSource = makeDataSource()
     
-    var stockViewModels: [StockViewModel] = []
+    var stockViewModels: [StockRowViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +52,7 @@ class StocksViewController: UITableViewController {
             }
         }.disposed(by: disposeBag)
         
-        stockViewModels = stocks.map (StockViewModel.init(stock:))
+        stockViewModels = stocks.map (StockRowViewModel.init(stock:))
         update(with: stockViewModels)
         
     }
@@ -145,12 +92,12 @@ class StocksViewController: UITableViewController {
     }
 }
 
-fileprivate extension StocksViewController {
+fileprivate extension StockViewController {
     enum Section: CaseIterable {
         case stocks
     }
     
-    private func makeDataSource() -> UITableViewDiffableDataSource<Section, StockViewModel> {
+    private func makeDataSource() -> UITableViewDiffableDataSource<Section, StockRowViewModel> {
         return UITableViewDiffableDataSource(
             tableView: tableView,
             cellProvider: {  tableView, indexPath, stock in
@@ -160,9 +107,9 @@ fileprivate extension StocksViewController {
             })
     }
     
-    private func update(with stocks: [StockViewModel], animate: Bool = true) {
+    private func update(with stocks: [StockRowViewModel], animate: Bool = true) {
         DispatchQueue.main.async {
-            var snapshot = NSDiffableDataSourceSnapshot<Section, StockViewModel>()
+            var snapshot = NSDiffableDataSourceSnapshot<Section, StockRowViewModel>()
             snapshot.appendSections(Section.allCases)
             snapshot.appendItems(stocks, toSection: .stocks)
             self.dataSource.apply(snapshot, animatingDifferences: animate)

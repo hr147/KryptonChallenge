@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4DCC198E279C221000692E6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC198D279C221000692E6C /* AppDelegate.swift */; };
 		4DCC1990279C221000692E6C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC198F279C221000692E6C /* SceneDelegate.swift */; };
-		4DCC1992279C221000692E6C /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC1991279C221000692E6C /* StocksViewController.swift */; };
+		4DCC1992279C221000692E6C /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC1991279C221000692E6C /* StockViewController.swift */; };
 		4DCC1995279C221000692E6C /* Stock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCC1993279C221000692E6C /* Stock.storyboard */; };
 		4DCC1997279C221400692E6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DCC1996279C221400692E6C /* Assets.xcassets */; };
 		4DCC199A279C221400692E6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCC1998279C221400692E6C /* LaunchScreen.storyboard */; };
@@ -29,13 +29,15 @@
 		4DE299F3279E00640091D7A6 /* SocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299F2279E00640091D7A6 /* SocketHandler.swift */; };
 		4DE299F5279E05CA0091D7A6 /* StockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299F4279E05CA0091D7A6 /* StockUseCase.swift */; };
 		4DE299F8279E0B1F0091D7A6 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299F7279E0B1F0091D7A6 /* StockTableViewCell.swift */; };
+		4DE299FA279E0C3F0091D7A6 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299F9279E0C3F0091D7A6 /* Stock.swift */; };
+		4DE299FC279E0CFF0091D7A6 /* StockRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299FB279E0CFF0091D7A6 /* StockRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4DCC198A279C221000692E6C /* KryptonChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KryptonChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCC198D279C221000692E6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DCC198F279C221000692E6C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4DCC1991279C221000692E6C /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
+		4DCC1991279C221000692E6C /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		4DCC1994279C221000692E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Stock.storyboard; sourceTree = "<group>"; };
 		4DCC1996279C221400692E6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DCC1999279C221400692E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +54,8 @@
 		4DE299F2279E00640091D7A6 /* SocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHandler.swift; sourceTree = "<group>"; };
 		4DE299F4279E05CA0091D7A6 /* StockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCase.swift; sourceTree = "<group>"; };
 		4DE299F7279E0B1F0091D7A6 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
+		4DE299F9279E0C3F0091D7A6 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		4DE299FB279E0CFF0091D7A6 /* StockRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +164,7 @@
 				4DE299F6279E0AF40091D7A6 /* Cell */,
 				4DCC1993279C221000692E6C /* Stock.storyboard */,
 				4DE299EA279DA0B00091D7A6 /* StockCoordinator.swift */,
-				4DCC1991279C221000692E6C /* StocksViewController.swift */,
+				4DCC1991279C221000692E6C /* StockViewController.swift */,
 				4DE299EC279DA1290091D7A6 /* StockViewControllerFactory.swift */,
 			);
 			path = Stock;
@@ -179,6 +183,7 @@
 			children = (
 				4DE299F2279E00640091D7A6 /* SocketHandler.swift */,
 				4DE299F4279E05CA0091D7A6 /* StockUseCase.swift */,
+				4DE299F9279E0C3F0091D7A6 /* Stock.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				4DE299F7279E0B1F0091D7A6 /* StockTableViewCell.swift */,
+				4DE299FB279E0CFF0091D7A6 /* StockRowViewModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -274,14 +280,16 @@
 			files = (
 				4DE299E8279D974A0091D7A6 /* AppCoordinator.swift in Sources */,
 				4DE299E5279D94330091D7A6 /* UIStoryboard+Extension.swift in Sources */,
-				4DCC1992279C221000692E6C /* StocksViewController.swift in Sources */,
+				4DCC1992279C221000692E6C /* StockViewController.swift in Sources */,
 				4DCC198E279C221000692E6C /* AppDelegate.swift in Sources */,
 				4DE299DF279D94330091D7A6 /* Coordinator.swift in Sources */,
 				4DE299F0279DC3CD0091D7A6 /* EuroFormatter.swift in Sources */,
 				4DCC1990279C221000692E6C /* SceneDelegate.swift in Sources */,
+				4DE299FC279E0CFF0091D7A6 /* StockRowViewModel.swift in Sources */,
 				4DE299EB279DA0B00091D7A6 /* StockCoordinator.swift in Sources */,
 				4DE299F5279E05CA0091D7A6 /* StockUseCase.swift in Sources */,
 				4DE299E3279D94330091D7A6 /* UIKit+ReuseIdentifier.swift in Sources */,
+				4DE299FA279E0C3F0091D7A6 /* Stock.swift in Sources */,
 				4DE299F8279E0B1F0091D7A6 /* StockTableViewCell.swift in Sources */,
 				4DE299DE279D94330091D7A6 /* BaseCoordinator.swift in Sources */,
 				4DE299E4279D94330091D7A6 /* UIViewController+Extension.swift in Sources */,

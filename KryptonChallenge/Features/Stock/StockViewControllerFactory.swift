@@ -8,7 +8,7 @@
 import UIKit
 
 final class StockViewControllerFactory {
-    func makeStockViewController() -> StocksViewController {
+    func makeStockViewController() -> StockViewController {
         let storyboard = UIStoryboard(name: .stock )
         return storyboard.initialViewController()
     }

@@ -17,7 +17,7 @@ class StockTableViewCell: UITableViewCell {
         disposeBag = .init()
     }
     
-    func configure(with stock: StockViewModel) {
+    func configure(with stock: StockRowViewModel) {
         textLabel?.text = stock.name
         detailTextLabel.map {
             stock.price.asDriver()
