@@ -45,6 +45,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D7DDD30279D79D20028AE4C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4DCC199B279C221400692E6C /* Info.plist */,
+				4DCC1993279C221000692E6C /* Main.storyboard */,
+				4DCC1996279C221400692E6C /* Assets.xcassets */,
+				4DCC1998279C221400692E6C /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4DCC1981279C221000692E6C = {
 			isa = PBXGroup;
 			children = (
@@ -64,13 +75,10 @@
 		4DCC198C279C221000692E6C /* KryptonChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				4D7DDD30279D79D20028AE4C /* Resources */,
 				4DCC198D279C221000692E6C /* AppDelegate.swift */,
 				4DCC198F279C221000692E6C /* SceneDelegate.swift */,
 				4DCC1991279C221000692E6C /* StocksTableViewController.swift */,
-				4DCC1993279C221000692E6C /* Main.storyboard */,
-				4DCC1996279C221400692E6C /* Assets.xcassets */,
-				4DCC1998279C221400692E6C /* LaunchScreen.storyboard */,
-				4DCC199B279C221400692E6C /* Info.plist */,
 			);
 			path = KryptonChallenge;
 			sourceTree = "<group>";
@@ -308,7 +316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KryptonChallenge/Info.plist;
+				INFOPLIST_FILE = KryptonChallenge/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -335,7 +343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KryptonChallenge/Info.plist;
+				INFOPLIST_FILE = KryptonChallenge/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
