@@ -2,32 +2,12 @@
 //  ViewController.swift
 //  KryptonChallenge
 //
-//  Created by hrasheed on 22.01.22.
+//  Created on 22.01.22.
 //
 
 import UIKit
 import Starscream
 import RxRelay
-
-@propertyWrapper
-struct EuroFormatter {
-    var wrappedValue: String?
-}
-
-extension EuroFormatter: Decodable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let rawValue = try container.decode(Double.self)
-
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "EUR"
-        formatter.maximumFractionDigits = 2
-
-        let number = NSNumber(value: rawValue)
-        wrappedValue = formatter.string(from: number)
-    }
-}
 
 struct Stock {
     let id: String
@@ -95,9 +75,7 @@ extension StockViewModel: Hashable {
     }
 }
 
-import IdentifiedCollections
-
-class StocksTableViewController: UITableViewController, WebSocketDelegate {
+class StocksViewController: UITableViewController, WebSocketDelegate {
     //{"subscribe":"US0378331005"}
     
     //let manager = SocketManager(socketURL: URL(string: "ws://159.89.15.214:8080/")!, config: [.log(true), .compress])
@@ -119,6 +97,7 @@ class StocksTableViewController: UITableViewController, WebSocketDelegate {
         socket.connect()
         tableView.dataSource = dataSource
         update(with: [])
+        title = "Krypton Challenge"
     }
     
     // MARK: - WebSocketDelegate
@@ -232,7 +211,7 @@ class StocksTableViewController: UITableViewController, WebSocketDelegate {
     }
 }
 
-fileprivate extension StocksTableViewController {
+fileprivate extension StocksViewController {
     enum Section: CaseIterable {
         case stocks
     }
