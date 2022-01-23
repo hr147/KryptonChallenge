@@ -56,6 +56,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4D7DDD31279D7C740028AE4C /* AppSetup */ = {
+			isa = PBXGroup;
+			children = (
+				4DCC198D279C221000692E6C /* AppDelegate.swift */,
+				4DCC198F279C221000692E6C /* SceneDelegate.swift */,
+			);
+			path = AppSetup;
+			sourceTree = "<group>";
+		};
 		4DCC1981279C221000692E6C = {
 			isa = PBXGroup;
 			children = (
@@ -75,9 +84,8 @@
 		4DCC198C279C221000692E6C /* KryptonChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				4D7DDD31279D7C740028AE4C /* AppSetup */,
 				4D7DDD30279D79D20028AE4C /* Resources */,
-				4DCC198D279C221000692E6C /* AppDelegate.swift */,
-				4DCC198F279C221000692E6C /* SceneDelegate.swift */,
 				4DCC1991279C221000692E6C /* StocksTableViewController.swift */,
 			);
 			path = KryptonChallenge;
