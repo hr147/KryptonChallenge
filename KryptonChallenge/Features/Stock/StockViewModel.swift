@@ -69,7 +69,6 @@ final class StockViewModel {
                         self.rowViewModels.first { $0.id == stock.id }?.price.accept(stock.price)
                     }
             }
-            .debug()
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         

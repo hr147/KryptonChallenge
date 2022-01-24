@@ -35,7 +35,20 @@
 		4DEB6BE3279E7CF300939CA5 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BDF279E7CF300939CA5 /* ErrorTracker.swift */; };
 		4DEB6BE5279E7CF300939CA5 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BE1279E7CF300939CA5 /* Observable+Ext.swift */; };
 		4DEB6BE8279ED71300939CA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB6BEA279ED71300939CA5 /* Localizable.strings */; };
+		4DEB6BF2279EDC2900939CA5 /* StockViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BF1279EDC2900939CA5 /* StockViewModelTests.swift */; };
+		4DEB6BFA279EDD0F00939CA5 /* StockUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BF9279EDD0F00939CA5 /* StockUseCaseMock.swift */; };
+		4DEB6BFC279EE3E300939CA5 /* Stock+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BFB279EE3E300939CA5 /* Stock+Mock.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4DEB6BF3279EDC2900939CA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DCC1982279C221000692E6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DCC1989279C221000692E6C;
+			remoteInfo = KryptonChallenge;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4DCC198A279C221000692E6C /* KryptonChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KryptonChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +77,10 @@
 		4DEB6BDF279E7CF300939CA5 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		4DEB6BE1279E7CF300939CA5 /* Observable+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		4DEB6BE9279ED71300939CA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4DEB6BEF279EDC2900939CA5 /* KryptonChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KryptonChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DEB6BF1279EDC2900939CA5 /* StockViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModelTests.swift; sourceTree = "<group>"; };
+		4DEB6BF9279EDD0F00939CA5 /* StockUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseMock.swift; sourceTree = "<group>"; };
+		4DEB6BFB279EE3E300939CA5 /* Stock+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stock+Mock.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +92,13 @@
 				4DCC19A9279C771500692E6C /* RxCocoa in Frameworks */,
 				4DCC19AD279C771500692E6C /* RxSwift in Frameworks */,
 				4DCC19A6279C533C00692E6C /* Starscream in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DEB6BEC279EDC2900939CA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCC198C279C221000692E6C /* KryptonChallenge */,
+				4DEB6BF0279EDC2900939CA5 /* KryptonChallengeTests */,
 				4DCC198B279C221000692E6C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCC198A279C221000692E6C /* KryptonChallenge.app */,
+				4DEB6BEF279EDC2900939CA5 /* KryptonChallengeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +243,24 @@
 			path = RxUtilities;
 			sourceTree = "<group>";
 		};
+		4DEB6BF0279EDC2900939CA5 /* KryptonChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				4DEB6BF8279EDCB200939CA5 /* Mocks */,
+				4DEB6BF1279EDC2900939CA5 /* StockViewModelTests.swift */,
+			);
+			path = KryptonChallengeTests;
+			sourceTree = "<group>";
+		};
+		4DEB6BF8279EDCB200939CA5 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4DEB6BF9279EDD0F00939CA5 /* StockUseCaseMock.swift */,
+				4DEB6BFB279EE3E300939CA5 /* Stock+Mock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,6 +287,24 @@
 			productReference = 4DCC198A279C221000692E6C /* KryptonChallenge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4DEB6BEE279EDC2900939CA5 /* KryptonChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DEB6BF5279EDC2900939CA5 /* Build configuration list for PBXNativeTarget "KryptonChallengeTests" */;
+			buildPhases = (
+				4DEB6BEB279EDC2900939CA5 /* Sources */,
+				4DEB6BEC279EDC2900939CA5 /* Frameworks */,
+				4DEB6BED279EDC2900939CA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4DEB6BF4279EDC2900939CA5 /* PBXTargetDependency */,
+			);
+			name = KryptonChallengeTests;
+			productName = KryptonChallengeTests;
+			productReference = 4DEB6BEF279EDC2900939CA5 /* KryptonChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -255,6 +317,10 @@
 				TargetAttributes = {
 					4DCC1989279C221000692E6C = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					4DEB6BEE279EDC2900939CA5 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 4DCC1989279C221000692E6C;
 					};
 				};
 			};
@@ -276,6 +342,7 @@
 			projectRoot = "";
 			targets = (
 				4DCC1989279C221000692E6C /* KryptonChallenge */,
+				4DEB6BEE279EDC2900939CA5 /* KryptonChallengeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -289,6 +356,13 @@
 				4DEB6BE8279ED71300939CA5 /* Localizable.strings in Resources */,
 				4DCC1997279C221400692E6C /* Assets.xcassets in Resources */,
 				4DCC1995279C221000692E6C /* Stock.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DEB6BED279EDC2900939CA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +396,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4DEB6BEB279EDC2900939CA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DEB6BFC279EE3E300939CA5 /* Stock+Mock.swift in Sources */,
+				4DEB6BFA279EDD0F00939CA5 /* StockUseCaseMock.swift in Sources */,
+				4DEB6BF2279EDC2900939CA5 /* StockViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4DEB6BF4279EDC2900939CA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4DCC1989279C221000692E6C /* KryptonChallenge */;
+			targetProxy = 4DEB6BF3279EDC2900939CA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4DCC1993279C221000692E6C /* Stock.storyboard */ = {
@@ -520,6 +612,40 @@
 			};
 			name = Release;
 		};
+		4DEB6BF6279EDC2900939CA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hr.KryptonChallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KryptonChallenge.app/KryptonChallenge";
+			};
+			name = Debug;
+		};
+		4DEB6BF7279EDC2900939CA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hr.KryptonChallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KryptonChallenge.app/KryptonChallenge";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -537,6 +663,15 @@
 			buildConfigurations = (
 				4DCC199F279C221400692E6C /* Debug */,
 				4DCC19A0279C221400692E6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DEB6BF5279EDC2900939CA5 /* Build configuration list for PBXNativeTarget "KryptonChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DEB6BF6279EDC2900939CA5 /* Debug */,
+				4DEB6BF7279EDC2900939CA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
