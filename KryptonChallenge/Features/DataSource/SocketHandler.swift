@@ -18,10 +18,19 @@ extension WebSocket {
     }()
 }
 
+/// Types adopting `SocketHandling` to provide implementation for sockets
 protocol SocketHandling {
+    /// triggered raw data of type `Strings` when return from server
     var rawData: Observable<String> { get }
+    
+    /// Send data to socket
+    /// - Returns: trigger when write is executed either success/fail.
     func write(jsonData: [String: String]) -> Completable
+    
+    /// return status of socket connection.
     var isConnected: Bool { get }
+    
+    /// Send request to connect
     func connect()
 }
 

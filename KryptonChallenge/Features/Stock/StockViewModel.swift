@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 import Foundation
 
+/// Use to identify which action is being sent by the user from UI.
 enum SubscriptionAction {
     case subscribed(atIndex: Int)
     case unsubscribe(atIndex: Int)

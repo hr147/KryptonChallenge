@@ -8,9 +8,18 @@
 import Foundation
 import RxSwift
 
+/// `StockUseCase` use for retrieving stocks and request to provider for subscribe/unsubscribe stock.
 protocol StockUseCase {
+    /// Fetch stocks which are only subscribed by the user.
+    /// - Returns: `Observable` of stock which will emit stream of updated stock.
     func fetchStocks() -> Observable<Stock>
+    
+    /// Subscribe to get latest updates of specify stock.
+    /// - Returns: `Completable` which triggered when execution is completed.
     func subscribe(withStockId stockId: String) -> Completable
+    
+    /// Unsubscribe to stop getting latest updates of specify stock.
+    /// - Returns: `Completable` which triggered when execution is completed.
     func unsubscribe(withStockId stockId: String) -> Completable
 }
 
