@@ -16,7 +16,7 @@ protocol StockUseCase {
     func unsubscribe(withStockId stockId: String) -> Completable
 }
 
-class SocketStockUseCase: StockUseCase {
+final class SocketStockUseCase: StockUseCase {
     enum StockUseCaseImpError: LocalizedError {
         case invalidData
         
@@ -28,7 +28,7 @@ class SocketStockUseCase: StockUseCase {
         }
     }
     
-    let handler: SocketHandling
+    private let handler: SocketHandling
     
     init(handler: SocketHandling) {
         self.handler = handler

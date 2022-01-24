@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class StockTableViewCell: UITableViewCell {
+final class StockTableViewCell: UITableViewCell {
     var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
