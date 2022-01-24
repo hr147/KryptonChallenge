@@ -38,6 +38,8 @@
 		4DEB6BF2279EDC2900939CA5 /* StockViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BF1279EDC2900939CA5 /* StockViewModelTests.swift */; };
 		4DEB6BFA279EDD0F00939CA5 /* StockUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BF9279EDD0F00939CA5 /* StockUseCaseMock.swift */; };
 		4DEB6BFC279EE3E300939CA5 /* Stock+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BFB279EE3E300939CA5 /* Stock+Mock.swift */; };
+		4DEB6BFF279F009200939CA5 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BFE279F009200939CA5 /* AppDIContainer.swift */; };
+		4DEB6C02279F019600939CA5 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4DEB6C01279F019600939CA5 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 		4DEB6BF9279EDD0F00939CA5 /* StockUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseMock.swift; sourceTree = "<group>"; };
 		4DEB6BFB279EE3E300939CA5 /* Stock+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stock+Mock.swift"; sourceTree = "<group>"; };
 		4DEB6BFD279EFF3100939CA5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		4DEB6BFE279F009200939CA5 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCC19AB279C771500692E6C /* RxRelay in Frameworks */,
+				4DEB6C02279F019600939CA5 /* Swinject in Frameworks */,
 				4DCC19A9279C771500692E6C /* RxCocoa in Frameworks */,
 				4DCC19AD279C771500692E6C /* RxSwift in Frameworks */,
 				4DCC19A6279C533C00692E6C /* Starscream in Frameworks */,
@@ -123,6 +127,7 @@
 				4DCC198D279C221000692E6C /* AppDelegate.swift */,
 				4DCC198F279C221000692E6C /* SceneDelegate.swift */,
 				4DE299E7279D974A0091D7A6 /* AppCoordinator.swift */,
+				4DEB6BFE279F009200939CA5 /* AppDIContainer.swift */,
 			);
 			path = AppSetup;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				4DCC19A8279C771500692E6C /* RxCocoa */,
 				4DCC19AA279C771500692E6C /* RxRelay */,
 				4DCC19AC279C771500692E6C /* RxSwift */,
+				4DEB6C01279F019600939CA5 /* Swinject */,
 			);
 			productName = KryptonChallenge;
 			productReference = 4DCC198A279C221000692E6C /* KryptonChallenge.app */;
@@ -338,6 +344,7 @@
 			packageReferences = (
 				4DCC19A4279C533C00692E6C /* XCRemoteSwiftPackageReference "Starscream" */,
 				4DCC19A7279C771500692E6C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				4DEB6C00279F019600939CA5 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 4DCC198B279C221000692E6C /* Products */;
 			projectDirPath = "";
@@ -389,6 +396,7 @@
 				4DE299F5279E05CA0091D7A6 /* StockUseCase.swift in Sources */,
 				4DE299E3279D94330091D7A6 /* UIKit+ReuseIdentifier.swift in Sources */,
 				4DE299FA279E0C3F0091D7A6 /* Stock.swift in Sources */,
+				4DEB6BFF279F009200939CA5 /* AppDIContainer.swift in Sources */,
 				4DE299F8279E0B1F0091D7A6 /* StockTableViewCell.swift in Sources */,
 				4DE299DE279D94330091D7A6 /* BaseCoordinator.swift in Sources */,
 				4DE299E4279D94330091D7A6 /* UIViewController+Extension.swift in Sources */,
@@ -697,6 +705,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		4DEB6C00279F019600939CA5 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -719,6 +735,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4DCC19A7279C771500692E6C /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		4DEB6C01279F019600939CA5 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DEB6C00279F019600939CA5 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

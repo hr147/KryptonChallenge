@@ -1,10 +1,10 @@
 import UIKit
 import Starscream
-let handler = SocketHandler()
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private var coordinator: AppCoordinator?
+    private lazy var handler: SocketHandling = DIContainer.resolve()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }

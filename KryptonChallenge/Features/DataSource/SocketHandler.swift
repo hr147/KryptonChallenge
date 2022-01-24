@@ -45,11 +45,15 @@ final class SocketHandler: SocketHandling {
         }
     }
     
+    // MARK: Public properties
     lazy var rawData = rawDataSubject.asObservable()
+    
+    // MARK: Private properties
     private let rawDataSubject = PublishSubject<String>()
     private(set) var isConnected = false
-    
     private let socket: WebSocket
+    
+    // MARK: Init
     
     init(socket: WebSocket = .defaultSocket) {
         self.socket = socket
