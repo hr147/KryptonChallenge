@@ -22,73 +22,73 @@ let stocks: [Stock] = [
     .init(id: "US70450Y1038", name: "Paypal")
 ]
 
-class StockViewController: UITableViewController {
+final class StockViewController: UITableViewController {
+    private let disposeBag = DisposeBag()
+    private let subscriptionAction = PublishSubject<SubscriptionAction>()
     private lazy var dataSource = makeDataSource()
+    private let viewModel: StockViewModel
     
-    var stockViewModels: [StockRowViewModel] = []
+    init?(coder: NSCoder, viewModel: StockViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+        bindViewModel()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("You must create this view controller with a user.")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = dataSource
-        update(with: [])
-        title = "Krypton Challenge"
-        configure()
+        configureUI()
     }
     
-    var disposeBag = DisposeBag()
-    let useCase = SocketStockUseCase(handler: handler)
+    private func configureUI() {
+        tableView.dataSource = dataSource
+        title = viewModel.screenTitle
+    }
     
-    func configure()  {
-        useCase.fetchStocks().subscribe {[weak self] event in
-            switch event {
-            case .next(let stock):
-                print(stock)
-                self?.stockViewModels.first { $0.id == stock.id }?.price.accept(stock.price)
-            case .completed:
-                break
-            case .error(let error):
-                print(error.localizedDescription)
-            }
-        }.disposed(by: disposeBag)
+    private func bindViewModel() {
+        let viewDidLoad = rx.sentMessage(#selector(self.viewDidLoad))
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
         
-        stockViewModels = stocks.map (StockRowViewModel.init(stock:))
-        update(with: stockViewModels)
+        let input = StockViewModel.Input(
+            trigger: viewDidLoad,
+            changeSubscription: subscriptionAction.asDriverOnErrorJustComplete()
+        )
         
+        let output = viewModel.transform(input: input)
+        
+        [output.stocks.drive(onNext: update),
+         output.showAlert.drive(onNext: presentAlert(_:)),
+         output.stocksDidUpdate.drive()]
+            .forEach({ $0.disposed(by: disposeBag) })
     }
     
     override func tableView(_ tableView: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // Archive action
-        let archive = UIContextualAction(style: .normal,
-                                         title: "subscribe") { [weak self] (action, view, completionHandler) in
-            //self?.handleMoveToArchive()
-            guard let self = self else { return }
-            
-            self.useCase.subscribe(stocks[indexPath.row])
-                .subscribe {
-                    print($0)
-                }.disposed(by: self.disposeBag)
+        let subscribeAction = UIContextualAction(
+            style: .normal,
+            title: viewModel.subscribeButtonTitle
+        ) { [weak self] (action, view, completionHandler) in
+            self?.subscriptionAction.onNext(.subscribed(atIndex: indexPath.row))
             completionHandler(true)
         }
-        archive.backgroundColor = .systemGreen
+        subscribeAction.backgroundColor = .systemGreen
         
-        // Trash action
-        let trash = UIContextualAction(style: .destructive,
-                                       title: "unsubscribe") { [weak self] (action, view, completionHandler) in
-            //self?.handleMoveToTrash()
+        let unsubscribeAction = UIContextualAction(
+            style: .destructive,
+            title: viewModel.unsubscribeButtonTitle
+        ) { [weak self] (action, view, completionHandler) in
+            self?.subscriptionAction.onNext(.unsubscribe(atIndex: indexPath.row))
             completionHandler(true)
         }
-        trash.backgroundColor = .systemRed
+        unsubscribeAction.backgroundColor = .systemRed
         
-        let configuration = UISwipeActionsConfiguration(actions: [trash, archive])
+        let configuration = UISwipeActionsConfiguration(actions: [subscribeAction, unsubscribeAction])
         
         return configuration
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
     }
 }
 
@@ -107,12 +107,12 @@ fileprivate extension StockViewController {
             })
     }
     
-    private func update(with stocks: [StockRowViewModel], animate: Bool = true) {
+    private func update(with stocks: [StockRowViewModel]) {
         DispatchQueue.main.async {
             var snapshot = NSDiffableDataSourceSnapshot<Section, StockRowViewModel>()
             snapshot.appendSections(Section.allCases)
             snapshot.appendItems(stocks, toSection: .stocks)
-            self.dataSource.apply(snapshot, animatingDifferences: animate)
+            self.dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
 }

@@ -10,8 +10,8 @@ import RxSwift
 
 protocol StockUseCase {
     func fetchStocks() -> Observable<Stock>
-    func subscribe(_ stock: Stock) -> Completable
-    func unsubscribe(_ stock: Stock) -> Completable
+    func subscribe(withStockId stockId: String) -> Completable
+    func unsubscribe(withStockId stockId: String) -> Completable
 }
 
 class SocketStockUseCase: StockUseCase {
@@ -35,11 +35,11 @@ class SocketStockUseCase: StockUseCase {
         }
     }
     
-    func subscribe(_ stock: Stock) -> Completable {
-        handler.write(jsonData: ["subscribe": stock.id])
+    func subscribe(withStockId stockId: String) -> Completable {
+        handler.write(jsonData: ["subscribe": stockId])
     }
     
-    func unsubscribe(_ stock: Stock) -> Completable {
-        handler.write(jsonData: ["unsubscribe": stock.id])
+    func unsubscribe(withStockId stockId: String) -> Completable {
+        handler.write(jsonData: ["unsubscribe": stockId])
     }
 }

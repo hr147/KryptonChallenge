@@ -71,6 +71,7 @@ extension SocketHandler: WebSocketDelegate {
         switch event {
         case .connected:
             isConnected = true
+            print("\n***connected....\n\n")
         case .disconnected:
             isConnected = false
             rawDataSubject.on(.error(SocketHandlerError.disconnected))
