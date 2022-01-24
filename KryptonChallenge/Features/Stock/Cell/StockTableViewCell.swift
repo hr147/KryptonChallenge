@@ -1,10 +1,3 @@
-//
-//  StockTableViewCell.swift
-//  KryptonChallenge
-//
-//  Created on 23.01.22.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa

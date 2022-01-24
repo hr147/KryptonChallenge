@@ -1,10 +1,3 @@
-//
-//  KryptonChallengeTests.swift
-//  KryptonChallengeTests
-//
-//  Created on 24.01.22.
-//
-
 import XCTest
 import RxSwift
 

@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  KryptonChallenge
-//
-//  Created on 22.01.22.
-//
-
 import UIKit
 import RxRelay
 import RxSwift

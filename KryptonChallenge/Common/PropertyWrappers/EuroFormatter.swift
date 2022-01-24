@@ -1,10 +1,3 @@
-//
-//  EuroFormatter.swift
-//  KryptonChallenge
-//
-//  Created on 23.01.22.
-//
-
 import Foundation
 
 @propertyWrapper

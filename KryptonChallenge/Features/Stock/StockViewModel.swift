@@ -1,10 +1,3 @@
-//
-//  StockViewModel.swift
-//  KryptonChallenge
-//
-//  Created on 23.01.22.
-//
-
 import RxSwift
 import RxCocoa
 import Foundation

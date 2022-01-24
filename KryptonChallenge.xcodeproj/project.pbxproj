@@ -81,6 +81,7 @@
 		4DEB6BF1279EDC2900939CA5 /* StockViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModelTests.swift; sourceTree = "<group>"; };
 		4DEB6BF9279EDD0F00939CA5 /* StockUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseMock.swift; sourceTree = "<group>"; };
 		4DEB6BFB279EE3E300939CA5 /* Stock+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stock+Mock.swift"; sourceTree = "<group>"; };
+		4DEB6BFD279EFF3100939CA5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +148,7 @@
 		4DCC198C279C221000692E6C /* KryptonChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				4DEB6BFD279EFF3100939CA5 /* README.md */,
 				4D7DDD31279D7C740028AE4C /* AppSetup */,
 				4DE299D2279D94010091D7A6 /* Common */,
 				4DE299E6279D967A0091D7A6 /* Features */,

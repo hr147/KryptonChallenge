@@ -1,10 +1,3 @@
-//
-//  Stock.swift
-//  KryptonChallenge
-//
-//  Created by hrasheed on 23.01.22.
-//
-
 import Foundation
 
 struct Stock {
