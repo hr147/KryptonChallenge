@@ -1,7 +1,7 @@
 import Foundation
 import Swinject
 
-let stocks: [Stock] = [
+let defaultStocks: [Stock] = [
     .init(id: "US0378331005", name: "Apple"),
     .init(id: "US88160R1014", name: "Tesla Motors"),
     .init(id: "DE000BASF111", name: "BASF"),

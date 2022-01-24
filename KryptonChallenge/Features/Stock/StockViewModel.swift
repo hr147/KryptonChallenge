@@ -45,7 +45,7 @@ final class StockViewModel {
     private let useCase: StockUseCase
     private var rowViewModels: [StockRowViewModel]
     
-    init(useCase: StockUseCase, stocks: [Stock] = stocks) {
+    init(useCase: StockUseCase, stocks: [Stock] = defaultStocks) {
         self.useCase = useCase
         self.rowViewModels = stocks.map(StockRowViewModel.init(stock:))
     }
