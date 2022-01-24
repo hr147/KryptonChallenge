@@ -53,19 +53,21 @@ final class SocketHandler: SocketHandling {
     private(set) var isConnected = false
     private let socket: WebSocket
     
-    // MARK: Init
+    // MARK: Life Cycle
     
     init(socket: WebSocket = .defaultSocket) {
         self.socket = socket
         self.socket.delegate = self
     }
     
-    func connect() {
-        socket.connect()
-    }
-    
     deinit {
         socket.disconnect()
+    }
+    
+    // MARK: Public Methods
+    
+    func connect() {
+        socket.connect()
     }
     
     func write(jsonData: [String: String]) -> Completable {
