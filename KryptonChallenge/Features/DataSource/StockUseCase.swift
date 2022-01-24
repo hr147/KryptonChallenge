@@ -21,7 +21,7 @@ class SocketStockUseCase: StockUseCase {
         var errorDescription: String? {
             switch self {
             case .invalidData:
-                return "Information is not properly processed from server"
+                return NSLocalizedString("invalid_data_error", comment: "")
             }
         }
     }

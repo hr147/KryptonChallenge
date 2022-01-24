@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Foundation
 
 enum SubscriptionAction {
     case subscribed(atIndex: Int)
@@ -43,9 +44,9 @@ final class StockViewModel {
         let showAlert: Driver<String>
     }
     
-    let screenTitle = "Krypton Challenge"
-    let subscribeButtonTitle = "subscribe"
-    let unsubscribeButtonTitle = "unsubscribe"
+    let screenTitle = NSLocalizedString("screen_title", comment: "")
+    let subscribeButtonTitle = NSLocalizedString("subscribe_button_title", comment: "")
+    let unsubscribeButtonTitle = NSLocalizedString("unsubscribe_button_title", comment: "")
     
     private let useCase: StockUseCase
     private var rowViewModels: [StockRowViewModel]

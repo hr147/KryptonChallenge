@@ -34,11 +34,11 @@ final class SocketHandler: SocketHandling {
         var errorDescription: String? {
             switch self {
             case .writeFailed:
-                return "Information is valid. please provide correct information."
+                return NSLocalizedString("write_failed_error", comment: "")
             case .disconnected:
-                return "Network is disconnected."
+                return NSLocalizedString("disconnected_error", comment: "")
             case .connectionFailed:
-                return "Network is not available"
+                return NSLocalizedString("connection_failed_error", comment: "")
             }
         }
     }

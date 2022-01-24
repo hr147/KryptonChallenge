@@ -1,0 +1,8 @@
+"screen_title" = "Krypton Challenge";
+"subscribe_button_title" = "Subscribe";
+"unsubscribe_button_title" = "Unsubscribe";
+
+"write_failed_error" = "Information is valid. please provide correct information.";
+"disconnected_error" = "Network is disconnected.";
+"connection_failed_error" = "Network is not available";
+"invalid_data_error" = "Information is not properly processed from server";

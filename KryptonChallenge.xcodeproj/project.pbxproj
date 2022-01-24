@@ -34,6 +34,7 @@
 		4DE299FE279E0DD00091D7A6 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE299FD279E0DD00091D7A6 /* StockViewModel.swift */; };
 		4DEB6BE3279E7CF300939CA5 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BDF279E7CF300939CA5 /* ErrorTracker.swift */; };
 		4DEB6BE5279E7CF300939CA5 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6BE1279E7CF300939CA5 /* Observable+Ext.swift */; };
+		4DEB6BE8279ED71300939CA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB6BEA279ED71300939CA5 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		4DE299FD279E0DD00091D7A6 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
 		4DEB6BDF279E7CF300939CA5 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		4DEB6BE1279E7CF300939CA5 /* Observable+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
+		4DEB6BE9279ED71300939CA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				4DCC199B279C221400692E6C /* Info.plist */,
 				4DCC1996279C221400692E6C /* Assets.xcassets */,
 				4DCC1998279C221400692E6C /* LaunchScreen.storyboard */,
+				4DEB6BEA279ED71300939CA5 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCC199A279C221400692E6C /* LaunchScreen.storyboard in Resources */,
+				4DEB6BE8279ED71300939CA5 /* Localizable.strings in Resources */,
 				4DCC1997279C221400692E6C /* Assets.xcassets in Resources */,
 				4DCC1995279C221000692E6C /* Stock.storyboard in Resources */,
 			);
@@ -335,6 +339,14 @@
 				4DCC1999279C221400692E6C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4DEB6BEA279ED71300939CA5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DEB6BE9279ED71300939CA5 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
