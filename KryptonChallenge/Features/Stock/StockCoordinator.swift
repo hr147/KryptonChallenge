@@ -10,7 +10,10 @@ import UIKit
 final class StockCoordinator: BaseCoordinator<UINavigationController> {
     override func start() {
         let factory = StockViewControllerFactory()
-        let productViewController = factory.makeStockViewController()
-        rootViewController.pushViewController(productViewController, animated: true)
+        guard let stockViewController = factory.makeStockViewController() else {
+            return assertionFailure()
+        }
+        
+        rootViewController.pushViewController(stockViewController, animated: true)
     }
 }

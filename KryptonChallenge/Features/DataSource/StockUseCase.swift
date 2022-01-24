@@ -15,8 +15,15 @@ protocol StockUseCase {
 }
 
 class SocketStockUseCase: StockUseCase {
-    enum StockUseCaseImpError: Error {
+    enum StockUseCaseImpError: LocalizedError {
         case invalidData
+        
+        var errorDescription: String? {
+            switch self {
+            case .invalidData:
+                return "Information is not properly processed from server"
+            }
+        }
     }
     
     let handler: SocketHandling

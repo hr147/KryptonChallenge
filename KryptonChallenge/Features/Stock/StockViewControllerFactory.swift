@@ -8,8 +8,12 @@
 import UIKit
 
 final class StockViewControllerFactory {
-    func makeStockViewController() -> StockViewController {
+    func makeStockViewController() -> StockViewController? {
         let storyboard = UIStoryboard(name: .stock )
-        return storyboard.initialViewController()
+        let controller = storyboard.instantiateInitialViewController { coder in
+            StockViewController(coder: coder, viewModel: StockViewModel(useCase: SocketStockUseCase(handler: handler)))
+        }
+        
+        return controller
     }
 }

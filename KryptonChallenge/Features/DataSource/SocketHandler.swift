@@ -26,10 +26,21 @@ protocol SocketHandling {
 }
 
 final class SocketHandler: SocketHandling {
-    enum SocketHandlerError: Error {
+    enum SocketHandlerError: LocalizedError {
         case writeFailed(Error)
         case disconnected
         case connectionFailed(Error?)
+        
+        var errorDescription: String? {
+            switch self {
+            case .writeFailed:
+                return "Information is valid. please provide correct information."
+            case .disconnected:
+                return "Network is disconnected."
+            case .connectionFailed:
+                return "Network is not available"
+            }
+        }
     }
     
     lazy var rawData = rawDataSubject.asObservable()
@@ -52,7 +63,11 @@ final class SocketHandler: SocketHandling {
     }
     
     func write(jsonData: [String: String]) -> Completable {
-        .create { [socket] observer in
+        guard isConnected else {
+            return .error(SocketHandlerError.disconnected)
+        }
+        
+        return .create { [socket] observer in
             do {
                 let data = try JSONSerialization.data(withJSONObject: jsonData, options: JSONSerialization.WritingOptions.prettyPrinted)
                 socket.write(data: data) {

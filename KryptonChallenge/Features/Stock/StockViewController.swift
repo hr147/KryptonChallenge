@@ -23,10 +23,13 @@ let stocks: [Stock] = [
 ]
 
 final class StockViewController: UITableViewController {
+    // MARK: Private Properties
     private let disposeBag = DisposeBag()
     private let subscriptionAction = PublishSubject<SubscriptionAction>()
     private lazy var dataSource = makeDataSource()
     private let viewModel: StockViewModel
+    
+    // MARK: Life Cycle
     
     init?(coder: NSCoder, viewModel: StockViewModel) {
         self.viewModel = viewModel
@@ -41,29 +44,6 @@ final class StockViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-    }
-    
-    private func configureUI() {
-        tableView.dataSource = dataSource
-        title = viewModel.screenTitle
-    }
-    
-    private func bindViewModel() {
-        let viewDidLoad = rx.sentMessage(#selector(self.viewDidLoad))
-            .mapToVoid()
-            .asDriverOnErrorJustComplete()
-        
-        let input = StockViewModel.Input(
-            trigger: viewDidLoad,
-            changeSubscription: subscriptionAction.asDriverOnErrorJustComplete()
-        )
-        
-        let output = viewModel.transform(input: input)
-        
-        [output.stocks.drive(onNext: update),
-         output.showAlert.drive(onNext: presentAlert(_:)),
-         output.stocksDidUpdate.drive()]
-            .forEach({ $0.disposed(by: disposeBag) })
     }
     
     override func tableView(_ tableView: UITableView,
@@ -89,6 +69,35 @@ final class StockViewController: UITableViewController {
         let configuration = UISwipeActionsConfiguration(actions: [subscribeAction, unsubscribeAction])
         
         return configuration
+    }
+    
+    // MARK: Private Methods
+    
+    private func configureUI() {
+        tableView.dataSource = dataSource
+        title = viewModel.screenTitle
+    }
+    
+    private func bindViewModel() {
+        let viewDidLoad = rx.sentMessage(#selector(self.viewDidLoad))
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        
+        let input = StockViewModel.Input(
+            trigger: viewDidLoad,
+            changeSubscription: subscriptionAction.asDriverOnErrorJustComplete()
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        [output.stocks.drive(onNext: {[weak self] rows in
+            self?.update(with: rows)
+        }),
+         output.showAlert.drive(onNext: {[weak self] message in
+            self?.presentAlert(message)
+        }),
+         output.stocksDidUpdate.drive()]
+            .forEach({ $0.disposed(by: disposeBag) })
     }
 }
 
