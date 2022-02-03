@@ -111,7 +111,7 @@ class StockViewModelTests: XCTestCase {
         
         output.stocksDidUpdate.drive().disposed(by: disposeBag)
         
-        currentRows[index].price.subscribe { event in
+        currentRows[index].valueDidChange.subscribe { event in
             guard case let .next(price) = event else {
                 return
             }

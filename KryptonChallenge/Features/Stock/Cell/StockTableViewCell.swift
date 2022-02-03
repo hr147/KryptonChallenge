@@ -13,7 +13,7 @@ final class StockTableViewCell: UITableViewCell {
     func configure(with stock: StockRowViewModel) {
         textLabel?.text = stock.name
         detailTextLabel.map {
-            stock.price.asDriver()
+            stock.valueDidChange.asDriver()
                 .drive($0.rx.text)
                 .disposed(by: disposeBag)
         }

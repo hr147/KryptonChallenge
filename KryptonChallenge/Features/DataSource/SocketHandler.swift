@@ -4,7 +4,7 @@ import Starscream
 
 extension WebSocket {
     static let defaultSocket: WebSocket = {
-        let baseURL = "ws://159.89.15.214:8080/"
+        let baseURL = "ws://46.101.236.188:8080/"
         var request = URLRequest(url: URL(string: baseURL)!)
         request.timeoutInterval = 5
         return WebSocket(request: request)

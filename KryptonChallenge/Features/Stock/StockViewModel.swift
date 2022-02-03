@@ -44,6 +44,11 @@ final class StockViewModel {
     
     private let useCase: StockUseCase
     private var rowViewModels: [StockRowViewModel]
+    private lazy var formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
     
     init(useCase: StockUseCase, stocks: [Stock] = defaultStocks) {
         self.useCase = useCase
@@ -60,7 +65,7 @@ final class StockViewModel {
                 self.useCase.fetchStocks()
                     .trackError(errorTracker)
                     .do { stock in
-                        self.rowViewModels.first { $0.id == stock.id }?.price.accept(stock.price)
+                        self.rowViewModels.first { $0.id == stock.id }?.valueDidChange.accept(self.formate(with: stock))
                     }
             }
             .mapToVoid()
@@ -94,5 +99,19 @@ final class StockViewModel {
             stocksDidUpdate: .merge(changedStocks, subscriptionCompleted),
             showAlert: errorTracker.map { $0.localizedDescription }
         )
+    }
+    
+    func formate(with stock: Stock) -> String {
+        let difference = stock.openMarketPrice - stock.price
+        let personage = 100 * ( difference / stock.openMarketPrice )
+    
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        let formattedPrice = formatter.string(from: NSNumber(value: stock.price)) ?? ""
+        
+        formatter.numberStyle = .percent
+        let formattedPersonage = formatter.string(from: NSNumber(value: personage)) ?? ""
+        
+        return formattedPrice + " : " + formattedPersonage
     }
 }
