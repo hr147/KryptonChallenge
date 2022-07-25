@@ -88,42 +88,4 @@ class StockViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual(mockUseCase.stockIdForUnsubscribe, mockStocks[index].id)
     }
-    
-    func testStocksDidUpdateOutput_whenServerReturnNewStock_shouldHaveUpdatedRow() {
-        // Given
-        let index = 0
-        let expectedPrice = "12345"
-        var expectedStock = mockStocks[index]
-        expectedStock.price = expectedPrice
-        var currentPrice: String?
-        var currentRows: [StockRowViewModel] = []
-        
-        let input = StockViewModel.Input(
-            trigger: .just(()),
-            changeSubscription: .empty()
-        )
-        
-        let output = sut.transform(input: input)
-        
-        output.stocks.drive { rows in
-            currentRows = rows
-        }.disposed(by: disposeBag)
-        
-        output.stocksDidUpdate.drive().disposed(by: disposeBag)
-        
-        currentRows[index].valueDidChange.subscribe { event in
-            guard case let .next(price) = event else {
-                return
-            }
-
-            currentPrice = price
-        }
-        .disposed(by: disposeBag)
-        
-        // When
-        mockUseCase.fetchStocksSubject.onNext(expectedStock)
-        
-        // Then
-        XCTAssertEqual(expectedPrice, currentPrice)
-    }
 }
